@@ -1,0 +1,210 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/08/2023  14:27:49  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+E:\SOFTWARE\PROGRAM\KEIL5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\Project PRINT (.\Listi
+>> ngs\Project.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\main.obj (MAIN)
+  E:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C_INIT)
+  E:\SOFTWARE\PROGRAM\KEIL5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\Project (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000EH     UNIT         ?DT?MAIN
+            IDATA   0016H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     001DH     UNIT         ?CO?MAIN
+                    0020H     0003H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     008CH     UNIT         ?C_C51STARTUP
+            CODE    00B2H     004DH     UNIT         ?PR?UARTROUTINE?MAIN
+            CODE    00FFH     001BH     UNIT         ?PR?UARTINIT?MAIN
+            CODE    011AH     0019H     UNIT         ?C?LIB_CODE
+            CODE    0133H     0018H     UNIT         ?PR?_SENDBUFFLEN?MAIN
+            CODE    014BH     0011H     UNIT         ?C_INITSEG
+            CODE    015CH     0010H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Project (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?UARTINIT?MAIN
+  +--> ?PR?_SENDBUFFLEN?MAIN
+
+*** NEW ROOT ***************************************************
+
+?PR?UARTROUTINE?MAIN
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2023  14:27:49  PAGE 2
+
+
+  +--> ?CO?MAIN
+  +--> ?PR?_SENDBUFFLEN?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Project (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0026H         SEGMENT       ?C_C51STARTUP
+  I:0016H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0029H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0026H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0026H         LINE#         133
+  C:0028H         LINE#         134
+  C:0029H         LINE#         135
+  C:002AH         LINE#         136
+  C:002CH         LINE#         185
+  C:002FH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:00B2H         PUBLIC        UartRoutine
+  D:00A8H         PUBLIC        IE
+  B:00A8H.4       PUBLIC        ES
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:015CH         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2023  14:27:49  PAGE 3
+
+
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  C:0133H         PUBLIC        _SendBuffLen
+  D:0098H         PUBLIC        SCON
+  C:00FFH         PUBLIC        UartInit
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  B:00A8H.3       PUBLIC        ET1
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:00A0H.0       PUBLIC        LED
+  B:0088H.6       PUBLIC        TR1
+  D:0008H         PUBLIC        str
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          UARTINIT
+  C:00FFH         LINE#         8
+  C:00FFH         LINE#         9
+  C:00FFH         LINE#         10
+  C:0102H         LINE#         11
+  C:0105H         LINE#         12
+  C:0108H         LINE#         13
+  C:010BH         LINE#         14
+  C:010EH         LINE#         15
+  C:0111H         LINE#         16
+  C:0113H         LINE#         17
+  C:0115H         LINE#         18
+  C:0117H         LINE#         19
+  C:0119H         LINE#         20
+  -------         ENDPROC       UARTINIT
+  -------         PROC          _SENDBUFFLEN
+  D:0001H         SYMBOL        str
+  D:0005H         SYMBOL        len
+  C:0133H         LINE#         22
+  C:0133H         LINE#         23
+  C:0133H         LINE#         24
+  C:0136H         LINE#         25
+  C:0136H         LINE#         26
+  C:013BH         LINE#         27
+  C:013EH         LINE#         28
+  C:0140H         LINE#         29
+  C:0147H         LINE#         30
+  C:0148H         LINE#         31
+  C:014AH         LINE#         32
+  -------         ENDPROC       _SENDBUFFLEN
+  -------         PROC          MAIN
+  C:015CH         LINE#         36
+  C:015CH         LINE#         37
+  C:015CH         LINE#         38
+  C:015FH         LINE#         39
+  C:016AH         LINE#         40
+  C:016AH         LINE#         41
+  C:016AH         LINE#         43
+  -------         ENDPROC       MAIN
+  -------         PROC          UARTROUTINE
+  -------         DO            
+  D:0007H         SYMBOL        res
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2023  14:27:49  PAGE 4
+
+
+  -------         ENDDO         
+  C:00B2H         LINE#         46
+  C:00C7H         LINE#         49
+  C:00CAH         LINE#         50
+  C:00CAH         LINE#         51
+  C:00CCH         LINE#         52
+  C:00D1H         LINE#         53
+  C:00D1H         LINE#         54
+  C:00D3H         LINE#         55
+  C:00DBH         LINE#         56
+  C:00DDH         LINE#         57
+  C:00DDH         LINE#         58
+  C:00DFH         LINE#         59
+  C:00EAH         LINE#         60
+  C:00EAH         LINE#         61
+  C:00ECH         LINE#         62
+  C:00ECH         LINE#         63
+  -------         ENDPROC       UARTROUTINE
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?CLDPTR
+  C:011AH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+Program Size: data=23.0 xdata=0 code=361
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
