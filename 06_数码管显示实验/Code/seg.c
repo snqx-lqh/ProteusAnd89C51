@@ -41,3 +41,4 @@ void SegShow()
 		default:HCC = 0;HCB = 0;HCA = 0;SEG = segCode[segBuff[0]];break;
 	}
 }
+

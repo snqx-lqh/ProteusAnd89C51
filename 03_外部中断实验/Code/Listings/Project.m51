@@ -1,9 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/08/2023  14:10:04  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/10/2024  20:45:54  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
-E:\SOFTWARE\PROGRAM\KEIL5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\Project PRINT (.\Listi
->> ngs\Project.m51) RAMSIZE (256)
+E:\PROGRAM\KEIL5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\main.obj TO .\Objects\Project PRINT (.\Listings\Proje
+>> ct.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: SMALL
@@ -59,7 +59,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (?C_STARTUP)
   ----------------------------------
 
   -------         MODULE        ?C_STARTUP
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2023  14:10:04  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/10/2024  20:45:54  PAGE 2
 
 
   C:0006H         SEGMENT       ?C_C51STARTUP
@@ -119,7 +119,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\Project (?C_STARTUP)
   C:0025H         PUBLIC        Exti1Init
   D:00C8H         PUBLIC        T2CON
   D:00D0H         PUBLIC        PSW
-BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/08/2023  14:10:04  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/10/2024  20:45:54  PAGE 3
 
 
   -------         PROC          EXTI0INIT

@@ -7,13 +7,13 @@ sbit KEY2 = P3^3;
 void Exti0Init()
 {
 	IT0 = 1;//1:下降沿触发 0:低电平触发
-	EX0 = 1;//打开外部中断1
+	EX0 = 1;//打开外部中断0
 	EA = 1;//打开总中断开关
 }
 
 void Exti1Init()
 {
-	IT1 = 1;//1:下降沿触发 0:低电平触发
+	IT1 = 0;//1:下降沿触发 0:低电平触发
 	EX1 = 1;//打开外部中断1
 	EA = 1;//打开总中断开关
 }
@@ -36,6 +36,8 @@ void Int1Routine(void) interrupt 2
 
 int main()
 {
+	KEY1 = 1;
+	KEY2 = 1;
 	Exti0Init();
 	Exti1Init();
 	while(1)
