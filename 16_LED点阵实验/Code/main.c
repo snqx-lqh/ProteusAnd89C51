@@ -4,52 +4,47 @@
 typedef unsigned char uchar;
 typedef unsigned int uint;
 void delayms(uint xms);
-void hc595(uchar byteData);
+void LedMatrixShow(uchar *showBuff);
+//74HC138的ABC引脚
+sbit HCA = P2^2;
+sbit HCB = P2^3;
+sbit HCC = P2^4;
 
-sbit SER = P3^4;    //p3.4脚控制串行数据输入
-sbit SCK = P3^6;    //串行输入时钟
-sbit RCK = P3^5;    //存储寄存器时钟
+#define SEG P1
 
-uchar code table[]=
-                                 {0xfe,0xfd,0xfb,0xf7,0xef,0xdf,0xbf,0x7f};
+uchar code table[]={0x01,0x55,0xAA,0x02,0x03,0x44,0x55,0xAA};
 uchar num=0;
 void main()
 {
         while(1)
         {
-                   for(num=0;num<8;num++)
-                {
-                        hc595(table[num]);        
-                        delayms(500);
-                }
-        }        //        hc595(0x55);            // Q7~Q0=0101 0101                 }
+			LedMatrixShow(table);
+			delayms(2);
+        }        
 }
 
-
-
-/*功能:发送一个字节的数据给595，再并行输出*/
-void hc595(char byteData)
+void LedMatrixShow(uchar *showBuff)
 {
-    char i=0;   
-    for(i=0;i<8;i++)
-    {
-        SER = byteData>>7;        //送出7位数据
-        byteData= byteData<<1;      
+	static uchar segSelectCount = 0;//位选变量
+	
+	segSelectCount ++;
+	if(segSelectCount > 7)
+		segSelectCount = 0;
 
-        SCK = 0;          //上升沿，让串行输入时钟变为高电平，并延时2个时钟周期
-        _nop_();
-        _nop_();
-        SCK = 1;          //变为低电平，为下次准备
-    }  
-   
-   //位移寄存器数据准备完毕,转移到存储寄存器
-   RCK = 0;         //上升沿，让存储寄存器时钟变为高电平，并延时2个时钟周期
-   _nop_();
-   _nop_();
-   RCK = 1;
-
+	SEG = 0x00;//消隐
+	switch (segSelectCount)
+	{
+		case 0: HCC = 0;HCB = 0;HCA = 0;SEG = showBuff[0];break;
+		case 1: HCC = 0;HCB = 0;HCA = 1;SEG = showBuff[1];break;
+		case 2: HCC = 0;HCB = 1;HCA = 0;SEG = showBuff[2];break;
+		case 3: HCC = 0;HCB = 1;HCA = 1;SEG = showBuff[3];break;
+		case 4: HCC = 1;HCB = 0;HCA = 0;SEG = showBuff[4];break;
+		case 5: HCC = 1;HCB = 0;HCA = 1;SEG = showBuff[5];break;
+		case 6: HCC = 1;HCB = 1;HCA = 0;SEG = showBuff[6];break;
+		case 7: HCC = 1;HCB = 1;HCA = 1;SEG = showBuff[7];break;
+		default:HCC = 0;HCB = 0;HCA = 0;SEG = showBuff[0];break;
+	}
 }
-
 
 void delayms(uint xms )  //延时xms函数
 {

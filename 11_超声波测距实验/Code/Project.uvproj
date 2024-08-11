@@ -386,6 +386,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>hc_sr04.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\hc_sr04.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

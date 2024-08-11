@@ -3,7 +3,13 @@
 
 #include <reg52.h>
 #include <intrins.h>
-#include "main.h"
+
+#ifndef u8
+#define u8  unsigned char  
+#endif
+#ifndef u16
+#define u16 unsigned char  
+#endif
 
 sbit IO =P3^4;
 sbit SCK=P3^6;

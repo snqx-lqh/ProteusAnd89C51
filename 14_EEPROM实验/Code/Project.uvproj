@@ -386,6 +386,16 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\eeprom.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD1602.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\LCD1602.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

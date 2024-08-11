@@ -60,10 +60,13 @@ u8 uartBuff[30] = {0};
 int main()
 {
 	int temp = 0;
+	UartInit();
 	while(1)
 	{
 		temp = Ds18b20ReadTemp();
 		sprintf((char*)uartBuff,"TEMP:%d\r\n",temp);
+		SendBuffLen(uartBuff,sizeof(uartBuff));
+		sprintf((char*)uartBuff,"TEMPf:%.2f\r\n",temp*0.0625);
 		SendBuffLen(uartBuff,sizeof(uartBuff));
 		Delay1000ms();
 	}

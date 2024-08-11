@@ -9,6 +9,11 @@ u8 time[7]={0x55,0X59,0x22,0x09,0x07,0x06,0x20};//秒，分，时，日，月，周，年
 u8 second,minute,hour,day,month,week,year;//存储实际的时间日期
 u8 secondTemp,minuteTemp,hourTemp,dayTemp,monthTemp,weekTemp,yearTemp;//存储修改时的时间日期
 
+/**
+  * @brief   往DS1302的指定寄存器写一个数据
+  * @param   addre 地址 dat 数据
+  * @retval  
+  */
 void ds1302write(u8 addre,u8 dat)
 {
 	u8 i;
@@ -38,6 +43,13 @@ void ds1302write(u8 addre,u8 dat)
 	}
 	RST=0;
 }
+
+/**
+  * @brief   从DS1302的指定寄存器读一个数据
+  * @param   addre 地址  
+  * @retval  dat 读到的数据
+  */
+
 u8 ds1302read(u8 addre)
 {
 	u8 i,dat1,dat;
@@ -77,16 +89,21 @@ u8 ds1302read(u8 addre)
 	return dat;
 }
 
+/**
+  * @brief   初始化DS1302
+  * @param    
+  * @retval   
+  */
 void ds1302init()
 {
 #if FIRST_WRITE == 1
 	u8 i;
-	ds1302write(0x8e,0x00);
+	ds1302write(0x8e,0x00); //关闭写保护
 	for (i=0;i<7;i++)
 	{
 		ds1302write(writeaddre[i],time[i]);
 	}
-	ds1302write(0x8e,0x80);
+	ds1302write(0x8e,0x80); //开启写保护
 #endif
 }
 

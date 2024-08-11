@@ -381,6 +381,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\bsp_key.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

@@ -1,17 +1,11 @@
 #include "reg52.h"
-#include "intrins.h"
+
 #include "stdio.h"
+#include "hc_sr04.h"
 
 #define u8 unsigned char
 #define u16 unsigned int
-	
-unsigned long dist;
-u16 time;
-u16 tt,flag;
-				   
-sbit Trig=P2^1;
-sbit Echo=P2^0;
-
+			   
 u8 uartBuff[30] = {0};
 
 void UartInit(void)		//9600bps@11.0592MHz
@@ -24,7 +18,7 @@ void UartInit(void)		//9600bps@11.0592MHz
 	TH1 = 0xFD;			//设置定时重载值
 	ET1 = 0;			//禁止定时器中断
 	TR1 = 1;			//定时器1开始计时
-	ES = 1;             //打开串口中断
+	ES = 0;             //打开串口中断
 	EA = 1;             //打开全部中断
 }
 
@@ -53,79 +47,20 @@ void delayms(unsigned int ms)
 	}
 }
 
-//计算函数
-void count()
-{
-	time=TH0*256+TL0;	
-	TH0=0;
-	TL0=0;
-	dist=(long)(time*0.17);
-	if((dist>=4000) || (flag==1)){
-		flag=0;
-	}
-	else{
-		sprintf((char*)uartBuff,"distance:%d\r\n",dist);
-		SendBuffLen(uartBuff,sizeof(uartBuff));
-	}
-}
-//定时器0初始化   
-void TimeInit()
-{
-	TMOD |= 0x01;
-	TH0   = 0;
-	TL0   = 0;
-	EA    = 1;
-	ET0   = 1;
-	TR0   = 0;
-}
-void Time0() interrupt 1
-{
-	flag=1;
-}
-
-void  StartModule() 		         //启动模块
-{
-	Trig=1;			                     //启动一次模块
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_();
-	_nop_(); 
-	_nop_(); 
-	_nop_(); 
-	_nop_();
-	Trig=0;
-}
-
 void main()
 {
+	float dist_value = 0;
+	HCSR04_Init();
 	UartInit();
 	TimeInit();
-	
-	Trig=0;
-	sprintf((char*)uartBuff,"超声波实验\r\n",dist);
+	sprintf((char*)uartBuff,"超声波实验\r\n" );
 	SendBuffLen(uartBuff,sizeof(uartBuff));
 	while(1)
 	{
 		StartModule();
-		while(!Echo);
-		TR0=1;
-		while(Echo);
-		TR0=0;
-		count();
+		dist_value = DistCount();
+		sprintf((char*)uartBuff,"distance:%.2f\r\n",dist_value);
+		SendBuffLen(uartBuff,sizeof(uartBuff));
 		delayms(80);
 	}
 }

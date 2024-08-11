@@ -386,6 +386,16 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>LCD1602.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\LCD1602.c</FilePath>
+            </File>
+            <File>
+              <FileName>iap_eeprom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\iap_eeprom.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

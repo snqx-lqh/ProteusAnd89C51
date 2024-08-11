@@ -386,6 +386,11 @@
               <FileType>1</FileType>
               <FilePath>.\main.c</FilePath>
             </File>
+            <File>
+              <FileName>LCD12864.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\LCD12864.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
